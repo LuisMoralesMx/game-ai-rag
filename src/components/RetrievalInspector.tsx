@@ -11,7 +11,7 @@ interface RetrievalInspectorProps {
   retrievedChunks: ChatMessage['metadata'];
 }
 
-export default function RetrievalInspector({
+const RetrievalInspector = React.memo(function RetrievalInspector({
   minSimilarity,
   onMinSimilarityChange,
   retrievedChunks,
@@ -77,4 +77,6 @@ export default function RetrievalInspector({
       </div>
     </aside>
   );
-}
+});
+
+export default RetrievalInspector;

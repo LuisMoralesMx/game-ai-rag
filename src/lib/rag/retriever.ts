@@ -1,4 +1,4 @@
-import { GoogleGenAI } from '@google/genai';
+import { getGeminiClient } from '@/lib/gemini';
 import { getEmbeddings, EmbeddedChunk } from './embedder';
 
 export interface RetrievalResult extends EmbeddedChunk {
@@ -42,13 +42,8 @@ export async function retrieveContext(
   const limit = options.limit ?? 3;
   const minSimilarity = options.minSimilarity ?? 0.3;
 
-  const apiKey = process.env.GEMINI_API_KEY;
-  if (!apiKey) {
-    throw new Error('GEMINI_API_KEY environment variable is not defined.');
-  }
-
   // Generate embedding for the search query
-  const ai = new GoogleGenAI({ apiKey });
+  const ai = getGeminiClient();
   const response = await ai.models.embedContent({
     model: 'gemini-embedding-2',
     contents: query,

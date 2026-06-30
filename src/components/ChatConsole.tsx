@@ -16,6 +16,31 @@ interface ChatConsoleProps {
   onSubmit: (e: React.FormEvent) => void;
 }
 
+const ChatMessageBubble = React.memo(function ChatMessageBubble({
+  message,
+}: {
+  message: ChatMessage;
+}) {
+  return (
+    <div
+      className={`${styles.messageRow} ${
+        message.role === 'user' ? styles.messageRowUser : styles.messageRowAssistant
+      }`}
+    >
+      <div
+        className={`${styles.messageBubble} ${
+          message.role === 'user' ? styles.messageBubbleUser : styles.messageBubbleAssistant
+        }`}
+      >
+        <div
+          className={styles.messageContent}
+          dangerouslySetInnerHTML={{ __html: marked.parse(message.content || '...') }}
+        />
+      </div>
+    </div>
+  );
+});
+
 export default function ChatConsole({
   activeGame,
   chatHistory,
@@ -69,19 +94,7 @@ export default function ChatConsole({
           </div>
         ) : (
           chatHistory.map((message) => (
-            <div
-              key={message.id}
-              className={`${styles.messageRow} ${message.role === 'user' ? styles.messageRowUser : styles.messageRowAssistant}`}
-            >
-              <div
-                className={`${styles.messageBubble} ${message.role === 'user' ? styles.messageBubbleUser : styles.messageBubbleAssistant}`}
-              >
-                <div
-                  className={styles.messageContent}
-                  dangerouslySetInnerHTML={{ __html: marked.parse(message.content || '...') }}
-                />
-              </div>
-            </div>
+            <ChatMessageBubble key={message.id} message={message} />
           ))
         )}
         <div ref={chatEndRef} />

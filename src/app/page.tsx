@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { useState, useCallback } from 'react';
 import { GAMES } from '@/constants/games';
 import { ChatMessage } from '@/types';
 import LeftSidebar from '@/components/LeftSidebar';
@@ -24,13 +24,13 @@ export default function Home() {
 
   const activeGame = GAMES.find(g => g.id === selectedGameId) || GAMES[0];
 
-  const handleGameSelect = (gameId: string) => {
+  const handleGameSelect = useCallback((gameId: string) => {
     setSelectedGameId(gameId);
     setChatHistory([]);
     setRetrievedChunks([]);
-  };
+  }, []);
 
-  const handleViewFile = async (fileName: string) => {
+  const handleViewFile = useCallback(async (fileName: string) => {
     setViewingFile(fileName);
     setIsFileLoading(true);
     setFileContent('');
@@ -48,12 +48,12 @@ export default function Home() {
     } finally {
       setIsFileLoading(false);
     }
-  };
+  }, []);
 
-  const handleClearChat = () => {
+  const handleClearChat = useCallback(() => {
     setChatHistory([]);
     setRetrievedChunks([]);
-  };
+  }, []);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -65,10 +65,6 @@ export default function Home() {
       content: query.trim(),
     };
 
-    setChatHistory(prev => [...prev, userMessage]);
-    setQuery('');
-    setIsLoading(true);
-
     const botMessageId = Math.random().toString(36).substring(7);
     const botMessage: ChatMessage = {
       id: botMessageId,
@@ -76,7 +72,10 @@ export default function Home() {
       content: '',
     };
     
-    setChatHistory(prev => [...prev, botMessage]);
+    // Batch user and bot message creation into a single state update
+    setChatHistory(prev => [...prev, userMessage, botMessage]);
+    setQuery('');
+    setIsLoading(true);
 
     try {
       const response = await fetch('/api/chat', {

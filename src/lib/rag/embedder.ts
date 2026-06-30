@@ -1,6 +1,6 @@
-import { GoogleGenAI } from '@google/genai';
 import fs from 'fs';
 import path from 'path';
+import { getGeminiClient } from '@/lib/gemini';
 
 // Define the chunk structure
 export interface EmbeddedChunk {
@@ -13,15 +13,6 @@ export interface EmbeddedChunk {
 
 const CACHE_PATH = path.join(process.cwd(), 'src/data/embeddings-cache.json');
 const GAMES_DIR = path.join(process.cwd(), 'src/data/games');
-
-// Initialize Gemini Client
-function getGenAIClient(): GoogleGenAI {
-  const apiKey = process.env.GEMINI_API_KEY;
-  if (!apiKey) {
-    throw new Error('GEMINI_API_KEY environment variable is not defined.');
-  }
-  return new GoogleGenAI({ apiKey });
-}
 
 /**
  * Split a markdown string into chunks based on headings.
@@ -79,7 +70,7 @@ export async function buildEmbeddingsCache(forceRegen = false): Promise<Embedded
   }
 
   console.log('Building embeddings cache...');
-  const ai = getGenAIClient();
+  const ai = getGeminiClient();
   const allEmbeddedChunks: EmbeddedChunk[] = [];
 
   if (!fs.existsSync(GAMES_DIR)) {

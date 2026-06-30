@@ -12,7 +12,7 @@ interface FileViewerModalProps {
   onClose: () => void;
 }
 
-export default function FileViewerModal({
+const FileViewerModal = React.memo(function FileViewerModal({
   viewingFile,
   isFileLoading,
   fileContent,
@@ -37,4 +37,6 @@ export default function FileViewerModal({
       </div>
     </div>
   );
-}
+});
+
+export default FileViewerModal;

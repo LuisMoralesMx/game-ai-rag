@@ -14,7 +14,7 @@ interface LeftSidebarProps {
   onViewFile: (fileName: string) => void;
 }
 
-export default function LeftSidebar({
+const LeftSidebar = React.memo(function LeftSidebar({
   games,
   selectedGameId,
   onGameSelect,
@@ -74,4 +74,6 @@ export default function LeftSidebar({
       </div>
     </aside>
   );
-}
+});
+
+export default LeftSidebar;

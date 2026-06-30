@@ -1,6 +1,6 @@
 import { NextResponse } from 'next/server';
 import { retrieveContext } from '@/lib/rag/retriever';
-import { GoogleGenAI } from '@google/genai';
+import { getGeminiClient } from '@/lib/gemini';
 
 export async function POST(req: Request) {
   try {
@@ -55,11 +55,7 @@ ${contextText || "No context was found for this query within the strategy guide.
       parts: [{ text: query }]
     });
 
-    const apiKey = process.env.GEMINI_API_KEY;
-    if (!apiKey) {
-      return NextResponse.json({ error: "GEMINI_API_KEY is not configured on the server." }, { status: 500 });
-    }
-    const ai = new GoogleGenAI({ apiKey });
+    const ai = getGeminiClient();
 
     // 4. Generate the streaming response
     const responseStream = await ai.models.generateContentStream({

@@ -1,6 +1,6 @@
 # Feature Specification: Game Strategy RAG
 
-**Status:** Under Review  
+**Status:** Implemented  
 **Author:** Antigravity  
 **Date Created:** 2026-06-30  
 **Last Updated:** 2026-06-30  
@@ -66,6 +66,7 @@ Users will select a game (Elden Ring, Hollow Knight, Cyberpunk 2077, or Clair Ob
   - **File Viewer Modal:** [FileViewerModal.tsx](file:///c:/Development/game-ai-rag/src/components/FileViewerModal.tsx) & [FileViewerModal.module.css](file:///c:/Development/game-ai-rag/src/components/FileViewerModal.module.css)
 * **Shared Types:** [index.ts](file:///c:/Development/game-ai-rag/src/types/index.ts)
 * **Shared Constants:** [games.ts](file:///c:/Development/game-ai-rag/src/constants/games.ts)
+* **Gemini API Client:** [gemini.ts](file:///c:/Development/game-ai-rag/src/lib/gemini.ts)
 * **Embedding Utility:** [embedder.ts](file:///c:/Development/game-ai-rag/src/lib/rag/embedder.ts)
 * **Vector Search Utility:** [retriever.ts](file:///c:/Development/game-ai-rag/src/lib/rag/retriever.ts)
 * **API Chat Endpoint:** [route.ts](file:///c:/Development/game-ai-rag/src/app/api/chat/route.ts)
