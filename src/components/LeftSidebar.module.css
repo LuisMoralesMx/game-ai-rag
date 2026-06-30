@@ -1,0 +1,170 @@
+/* SIDEBAR LEFT: Game selector & files list */
+.sidebarLeft {
+  background-color: var(--bg-secondary);
+  border-right: 1px solid var(--bg-tertiary);
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  overflow: hidden;
+}
+
+.brand {
+  padding: 24px;
+  border-bottom: 1px solid var(--bg-tertiary);
+}
+
+.brand h1 {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--accent-primary);
+  letter-spacing: -0.02em;
+  margin: 0;
+}
+
+.brand p {
+  font-size: 0.75rem;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  margin: 4px 0 0 0;
+}
+
+.sectionTitle {
+  font-family: var(--font-serif);
+  font-size: 0.9rem;
+  color: var(--text-primary);
+  margin: 20px 24px 10px 24px;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.gameList {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 0 16px;
+  overflow-y: auto;
+  flex-shrink: 0;
+}
+
+.gameCard {
+  background-color: var(--bg-primary);
+  border: 1px solid var(--bg-tertiary);
+  border-radius: var(--border-radius-md);
+  padding: 12px 16px;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  box-shadow: var(--shadow-sm);
+  width: 100%;
+  text-align: left;
+}
+
+.gameCard:hover {
+  border-color: var(--accent-primary);
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-md);
+}
+
+.gameCardActive {
+  background-color: var(--accent-light);
+  border-color: var(--accent-primary);
+  box-shadow: var(--shadow-md);
+}
+
+.gameIcon {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background-color: var(--bg-secondary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--text-secondary);
+  font-weight: bold;
+}
+
+.gameCardActive .gameIcon {
+  background-color: var(--accent-primary);
+  color: var(--bg-primary);
+}
+
+.gameInfo {
+  display: flex;
+  flex-direction: column;
+}
+
+.gameName {
+  font-weight: 600;
+  font-size: 0.9rem;
+  color: var(--text-primary);
+}
+
+.gameDesc {
+  font-size: 0.7rem;
+  color: var(--text-muted);
+}
+
+/* File explorer within Left Sidebar */
+.fileListContainer {
+  margin-top: 16px;
+  border-top: 1px solid var(--bg-tertiary);
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.fileList {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  padding: 0 16px 20px 16px;
+  overflow-y: auto;
+}
+
+.fileItem {
+  background: transparent;
+  border: 1px solid transparent;
+  border-radius: var(--border-radius-sm);
+  padding: 10px 12px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  cursor: pointer;
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+  transition: all 0.2s ease;
+  text-align: left;
+  width: 100%;
+}
+
+.fileItem:hover {
+  background-color: var(--bg-primary);
+  border-color: var(--bg-tertiary);
+  color: var(--accent-primary);
+}
+
+.fileIcon {
+  color: var(--text-muted);
+}
+
+.fileItem:hover .fileIcon {
+  color: var(--accent-primary);
+}
+
+.fileHighlight {
+  background-color: #f2e9dc !important;
+  border-color: var(--accent-primary) !important;
+  color: var(--text-primary) !important;
+  font-weight: 600;
+}
+
+/* RESPONSIVE BREAKPOINTS */
+@media (max-width: 768px) {
+  .sidebarLeft {
+    display: none; /* Mobile will only show chat */
+  }
+}

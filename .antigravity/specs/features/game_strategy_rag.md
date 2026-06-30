@@ -57,9 +57,15 @@ Users will select a game (Elden Ring, Hollow Knight, Cyberpunk 2077, or Clair Ob
 ---
 
 ## 4. Technical Implementation & Files
-* **Component Page:** [page.tsx](file:///c:/Development/game-ai-rag/src/app/page.tsx)
+* **Main Page Layout:** [page.tsx](file:///c:/Development/game-ai-rag/src/app/page.tsx) and [page.module.css](file:///c:/Development/game-ai-rag/src/app/page.module.css)
 * **Layout Structure:** [layout.tsx](file:///c:/Development/game-ai-rag/src/app/layout.tsx)
-* **Page Styles:** [page.module.css](file:///c:/Development/game-ai-rag/src/app/page.module.css)
+* **Modular UI Components:**
+  - **Left Sidebar:** [LeftSidebar.tsx](file:///c:/Development/game-ai-rag/src/components/LeftSidebar.tsx) & [LeftSidebar.module.css](file:///c:/Development/game-ai-rag/src/components/LeftSidebar.module.css)
+  - **Chat Console:** [ChatConsole.tsx](file:///c:/Development/game-ai-rag/src/components/ChatConsole.tsx) & [ChatConsole.module.css](file:///c:/Development/game-ai-rag/src/components/ChatConsole.module.css)
+  - **Retrieval Inspector:** [RetrievalInspector.tsx](file:///c:/Development/game-ai-rag/src/components/RetrievalInspector.tsx) & [RetrievalInspector.module.css](file:///c:/Development/game-ai-rag/src/components/RetrievalInspector.module.css)
+  - **File Viewer Modal:** [FileViewerModal.tsx](file:///c:/Development/game-ai-rag/src/components/FileViewerModal.tsx) & [FileViewerModal.module.css](file:///c:/Development/game-ai-rag/src/components/FileViewerModal.module.css)
+* **Shared Types:** [index.ts](file:///c:/Development/game-ai-rag/src/types/index.ts)
+* **Shared Constants:** [games.ts](file:///c:/Development/game-ai-rag/src/constants/games.ts)
 * **Embedding Utility:** [embedder.ts](file:///c:/Development/game-ai-rag/src/lib/rag/embedder.ts)
 * **Vector Search Utility:** [retriever.ts](file:///c:/Development/game-ai-rag/src/lib/rag/retriever.ts)
 * **API Chat Endpoint:** [route.ts](file:///c:/Development/game-ai-rag/src/app/api/chat/route.ts)
